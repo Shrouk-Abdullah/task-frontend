@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ar">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>صفحة المقالات</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo">مدونة التقنية</div>
+      <ul class="nav-links">
+        <li><a href="#">الرئيسية</a></li>
+        <li class="dropdown">
+          <a href="#">المقالات ⬇</a>
+          <div class="dropdown-content">
+            <a href="#" onclick="showArticle('article1')">المقال 1</a>
+            <a href="#" onclick="showArticle('article2')">المقال 2</a>
+            <a href="#" onclick="showAllArticles()">إظهار الكل</a>
+          </div>
+        </li>
+        <li><a href="#contact">اتصل بنا</a></li>
+      </ul>
+    </nav>
+
+    <div class="articles">
+      <div class="article" id="article1">
+        <div class="title">المقال 1</div>
+        <div class="content">هذه هي محتويات المقال 1. هذا النص مجرد مثال.</div>
+        <button class="like-btn" onclick="likeArticle(this)">أعجبني</button>
+        <p>عدد الإعجابات: <span class="like-count">0</span></p>
+      </div>
+
+      <div class="article" id="article2">
+        <div class="title">المقال 2</div>
+        <div class="content">
+          هذه هي محتويات المقال 2. هذا النص مجرد مثال آخر.
+        </div>
+        <button class="like-btn" onclick="likeArticle(this)">أعجبني</button>
+        <p>عدد الإعجابات: <span class="like-count">0</span></p>
+      </div>
+    </div>
+
+    <div class="contact" id="contact">
+      <h2>اتصل بنا</h2>
+      <p>يمكنك التواصل معنا عبر البريد الإلكتروني: contact@techblog.com</p>
+    </div>
+
+    <script>
+      function showArticle(articleId) {
+          document.querySelectorAll(".article").forEach(article => {
+              article.style.display = "none";
+          });
+          document.getElementById(articleId).style.display = "block";
+      }
+
+      function showAllArticles() {
+          document.querySelectorAll(".article").forEach(article => {
+              article.style.display = "block";
+          });
+      }
+
+      function likeArticle(button) {
+          var likeCountElement = button.nextElementSibling.querySelector(".like-count");
+          var currentLikes = parseInt(likeCountElement.innerText);
+          likeCountElement.innerText = currentLikes + 1;
+      }
+    </script>
+  </body>
+</html>
